@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!-- 模型版本 -->
+	<modelVersion>4.0.0</modelVersion>
+	<!--父项目的坐标。如果项目中没有指定某个元素的值，那么父项目中的对应值即为项目的默认值。-->
+	<parent>
+		<!--被继承的父项目的全球唯一标识符 -->
+		<groupId>org.springframework.boot</groupId>
+		<!--被继承的父项目的构件标识符 -->
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<!--被继承的父项目的版本 -->
+		<version>3.2.1</version>
+		<!-- 父项目的pom.xml文件的相对路径。相对路径允许你选择一个不同的路径。默认值是../pom.xml。Maven首先在构建当前项目的地方寻找父项
+            目的pom，其次在文件系统的这个位置（relativePath位置），然后在本地仓库，最后在远程仓库寻找父项目的pom。 -->
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<!-- 项目的全球唯一标识符，通常使用全限定的包名区分该项目和其他项目,公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.companyname.project-group，maven会将该项目打成的jar包放本地路径：/com/companyname/project-group -->
+	<groupId>com.admin</groupId>
+	<!-- 构件的标识符，它和group ID一起唯一标识一个构件。换句话说，你不能有两个不同的项目拥有同样的artifact ID和groupID；在某个
+       特定的group ID下，artifact ID也必须是唯一的。构件是项目产生的或使用的一个东西，Maven为项目产生的构件包括：JARs，源 码，二进制发布和WARs等。 -->
+	<artifactId>vite-admin</artifactId>
+	<!-- 版本号 -->
+	<version>0.0.1-SNAPSHOT</version>
+	<name>vite-admin-boot</name>
+	<!-- 项目的详细描述, Maven 产生的文档用。 当这个元素能够用HTML格式描述时（例如，CDATA中的文本会被解析器忽略，就可以包含HTML标
+       签）， 不鼓励使用纯文本描述。如果你需要修改产生的web站点的索引页面，你应该修改你自己的索引页文件，而不是调整这里的文档。 -->
+	<description>基于 Java 17 + SpringBoot 3 构建的权限管理系统。</description>
+	<!--以值代替名称，Properties可以在整个POM中使用，也可以作为触发条件。格式是<name>value</name>。就是Pom里面的变量 -->
+	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+
+		<hutool.version>5.8.24</hutool.version>
+		<fastjson2.version>2.0.44</fastjson2.version>
+		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+		<mysql.version>8.0.33</mysql.version>
+		<druid.version>1.2.21</druid.version>
+		<mybatis-plus.version>3.5.5</mybatis-plus.version>
+		<knife4j.version>4.3.0</knife4j.version>
+		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<jjwt.version>0.12.3</jjwt.version>
+		<easyexcel.version>3.3.3</easyexcel.version>
+		<!-- 对象存储 -->
+		<minio.version>8.5.2</minio.version>
+		<okhttp3.version>4.8.1</okhttp3.version>
+
+		<aliyun-sdk-oss.version>3.16.3</aliyun-sdk-oss.version>
+
+		<!-- redisson 分布式锁 -->
+		<redisson.version>3.24.3</redisson.version>
+	</properties>
+	<!--该元素描述了项目相关的所有依赖。 这些依赖组成了项目构建过程中的一个个环节。它们自动从项目定义的仓库中下载。要获取更多信息，请看项目依赖机制。 -->
+	<dependencies>
+		<dependency>
+			<!--依赖的group ID -->
+			<groupId>org.springframework.boot</groupId>
+			<!--依赖的artifact ID -->
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<!--依赖范围。在项目发布过程中，帮助决定哪些构件被包括进来。欲知详情请参考依赖机制。 - compile ：默认范围，用于编译 - provided：类似于编译，但支持你期待jdk或者容器提供，类似于classpath
+               - runtime: 在执行时需要使用 - test: 用于test任务时使用 - system: 需要外在提供相应的元素。通过systemPath来取得
+               - systemPath: 仅用于范围为system。提供相应的路径 - optional: 当项目自身被依赖时，标注依赖是否传递。用于连续依赖时使用 -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!--用于帮助快速构建Web应用程序-->
+			<!--https://www.volcengine.com/theme/6594910-S-7-1-->
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!--Spring缓存抽象-->
+			<!--https://www.cnblogs.com/morganlin/p/12000223.html-->
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<!--对象池-->
+			<!--https://juejin.cn/post/7244561634249293881#heading-7-->
+			<artifactId>commons-pool2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<!--为了扩展JDBC的一些限制-->
+			<!--https://www.cnblogs.com/haoyangyouli/p/16652444.html-->
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<!--编译测试环境，不打包在lib-->
+			<scope>provided</scope>
+		</dependency>
+		<!-- 允许使用Lombok的Java Bean类中使用MapStruct注解 (Lombok 1.18.20+) -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+			<version>${lombok-mapstruct-binding.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>${hutool.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.fastjson2</groupId>
+			<artifactId>fastjson2</artifactId>
+			<version>${fastjson2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+			<version>${mybatis-plus.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<!-- api文档插件 -->
+			<!-- https://doc.xiaominfo.com/docs/quick-start -->
+			<artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+			<version>${knife4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<!-- 简化Java Bean之间的映射关系 -->
+			<!-- https://mapstruct.org/ -->
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<!-- jwt token相关插件 -->
+		<!-- https://www.cnblogs.com/fanshuyao/p/14072358.html -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>1.24.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<!-- excel解决方案 -->
+			<artifactId>easyexcel</artifactId>
+			<version>${easyexcel.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!-- 对参数进行校验 -->
+			<!-- https://juejin.cn/post/6986645932133580807 -->
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- MinIO 对象存储 -->
+		<dependency>
+			<groupId>io.minio</groupId>
+			<artifactId>minio</artifactId>
+			<version>${minio.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aliyun.oss</groupId>
+			<artifactId>aliyun-sdk-oss</artifactId>
+			<version>${aliyun-sdk-oss.version}</version>
+		</dependency>
+
+		<!-- redisson 分布式锁 -->
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson-spring-boot-starter</artifactId>
+			<version>${redisson.version}</version>
+		</dependency>
+
+		<!-- websocket  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+	</dependencies>
+	<!--构建项目需要的信息 -->
+	<build>
+		<!--使用的插件列表 。 -->
+		<plugins>
+			<!--plugin元素包含描述插件所需要的信息。 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

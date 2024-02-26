@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: vite-element-admin-boot
+  profiles:
+    active: dev
